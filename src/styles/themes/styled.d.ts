@@ -18,5 +18,9 @@ declare module 'styled-components' {
 
       green: string;
     };
+
+    transitions: {
+      default: string;
+    };
   }
 }

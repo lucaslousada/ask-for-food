@@ -15,6 +15,10 @@ const dark = {
 
     green: '#3BA55D',
   },
+
+  transitions: {
+    default: '0.2s ease',
+  },
 };
 
 export default dark;

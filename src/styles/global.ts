@@ -21,13 +21,21 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
-  body, input, textarea, button {
+  body, input, textarea, button, a {
     font-family: 'Gordita', sans-serif;
     color: ${({ theme }) => theme.colors.color_900};
   }
 
   h1, h2, h3, h4, h5, h6, strong {
     font-weight: 500;
+  }
+
+  ul, ol {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   button {
