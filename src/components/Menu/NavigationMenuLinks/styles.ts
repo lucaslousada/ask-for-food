@@ -11,13 +11,19 @@ interface ListProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  transition: transform ${({ theme }) => theme.transitions.default};
+  transition: width ${({ theme }) => theme.transitions.default},
+    transform ${({ theme }) => theme.transitions.default},
+    padding ${({ theme }) => theme.transitions.default};
+
+  width: ${({ isTheMenuVisible }) =>
+    isTheMenuVisible === true ? '250px' : '0'};
   transform: ${({ isTheMenuVisible }) =>
     isTheMenuVisible === true ? 'initial' : 'translateX(-250px)'};
+  padding: ${({ isTheMenuVisible }) =>
+    isTheMenuVisible === true ? '42px 15px 20px' : '42px 0 20px'};
 
-  overflow: auto;
-  width: 250px;
-  padding: 42px 15px 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color: ${({ theme }) => theme.colors.color_200};
 `;
 
@@ -70,8 +76,8 @@ export const List = styled.ul<ListProps>`
     padding: 5px 10px;
     border-radius: 5px;
     color: ${({ theme }) => theme.colors.color_700};
-    transition-property: color, background-color;
-    transition: ${({ theme }) => theme.transitions.default};
+    transition: color ${({ theme }) => theme.transitions.default},
+      background-color ${({ theme }) => theme.transitions.default};
 
     &:hover {
       color: ${({ theme }) => theme.colors.color_900};
