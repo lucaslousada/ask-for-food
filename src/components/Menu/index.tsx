@@ -8,7 +8,7 @@ import { Container } from './styles';
 export function Menu() {
   const [isTheMenuVisible, setIsTheMenuVisible] = useState(true);
   const [selectedMenuCategory, setSelectedMenuCategory] =
-    useState<MenuCategories>('register');
+    useState<MenuCategories>('registers');
 
   return (
     <Container>

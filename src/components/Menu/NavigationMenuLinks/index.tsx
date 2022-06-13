@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { menuCategoriesData, MenuCategories } from '../menu-categories-data';
 
 import { CaretDoubleLeft } from 'phosphor-react';
@@ -16,11 +19,24 @@ interface NavigationMenuLinksProps {
   onIsTheMenuVisibleChange: (value: boolean) => void;
 }
 
+interface linkIsActiveProps {
+  isActive: boolean;
+}
+
 export function NavigationMenuLinks({
   selectedMenuCategory,
   isTheMenuVisible,
   onIsTheMenuVisibleChange,
 }: NavigationMenuLinksProps) {
+  const { colors } = useContext(ThemeContext);
+
+  function linkIsActive({ isActive }: linkIsActiveProps) {
+    return {
+      color: isActive ? colors.color_900 : '',
+      backgroundColor: isActive ? colors.transparent_color_200 : '',
+    };
+  }
+
   return (
     <Container isTheMenuVisible={isTheMenuVisible}>
       <Header>
@@ -50,10 +66,10 @@ export function NavigationMenuLinks({
 
                 return (
                   <ListItem key={index}>
-                    <a href={page.url}>
+                    <NavLink to={page.url} style={linkIsActive}>
                       <Icon />
                       <p>{page.name}</p>
-                    </a>
+                    </NavLink>
                   </ListItem>
                 );
               })}

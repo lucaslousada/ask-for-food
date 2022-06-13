@@ -61,14 +61,22 @@ export const MinimizeMenuButton = styled.button`
 export const List = styled.ul<ListProps>`
   display: ${({ selectedMenuCategory, linkCategory }) =>
     selectedMenuCategory === linkCategory ? 'initial' : 'none'};
+  font-size: 14px;
 
   li a {
     display: flex;
     align-items: center;
     column-gap: 10px;
     padding: 5px 10px;
+    border-radius: 5px;
     color: ${({ theme }) => theme.colors.color_700};
-    transition: color ${({ theme }) => theme.transitions.default};
+    transition-property: color, background-color;
+    transition: ${({ theme }) => theme.transitions.default};
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.color_900};
+      background-color: ${({ theme }) => theme.colors.transparent_color_200};
+    }
 
     svg {
       min-width: 24px;
@@ -84,19 +92,7 @@ export const List = styled.ul<ListProps>`
 `;
 
 export const ListItem = styled.li`
-  font-size: 14px;
-  border-radius: 5px;
-  transition: background-color ${({ theme }) => theme.transitions.default};
-
   & + li {
     margin-top: 10px;
-  }
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.transparent_color_200};
-
-    a {
-      color: ${({ theme }) => theme.colors.color_900};
-    }
   }
 `;

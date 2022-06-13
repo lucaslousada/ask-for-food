@@ -8,7 +8,7 @@ import {
   File,
 } from 'phosphor-react';
 
-export type MenuCategories = 'dashboard' | 'register';
+export type MenuCategories = 'dashboard' | 'registers';
 
 type MenuCategoriesData = {
   [key in MenuCategories]: {
@@ -38,13 +38,13 @@ export const menuCategoriesData: MenuCategoriesData = {
     ],
   },
 
-  register: {
+  registers: {
     name: 'Registros',
     icon: Database,
 
     pages: [
-      { name: 'Clientes', url: '/', icon: Users },
-      { name: 'Produtos', url: '/', icon: Hamburger },
+      { name: 'Clientes', url: '/registers/customers', icon: Users },
+      { name: 'Produtos', url: '/registers/products', icon: Hamburger },
     ],
   },
 };
