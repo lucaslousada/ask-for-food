@@ -5,10 +5,14 @@ import { NavigationMenuLinks } from './NavigationMenuLinks';
 
 import { Container } from './styles';
 
-export function Menu() {
+interface MenuProps {
+  activeCategory: MenuCategories;
+}
+
+export function Menu({ activeCategory }: MenuProps) {
   const [isTheMenuVisible, setIsTheMenuVisible] = useState(true);
   const [selectedMenuCategory, setSelectedMenuCategory] =
-    useState<MenuCategories>('registers');
+    useState<MenuCategories>(activeCategory);
 
   return (
     <Container>

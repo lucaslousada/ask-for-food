@@ -1,25 +1,21 @@
-import styled, { ThemeProvider } from 'styled-components';
-import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { Menu } from './components/Menu';
 import { Customers } from './pages/Customers';
 
 import { GlobalStyle } from './styles/global';
 import dark from './styles/themes/dark';
 
-const Container = styled.div`
-  display: flex;
-`;
-
 export function App() {
   return (
     <ThemeProvider theme={dark}>
-      <Container>
-        <Menu />
-        <Routes>
-          <Route path="/registers/customers" element={<Customers />} />
-        </Routes>
-      </Container>
+      <Routes>
+        <Route
+          path="/"
+          element={<Navigate replace to="/registers/customers" />}
+        />
+        <Route path="/registers/customers" element={<Customers />} />
+      </Routes>
 
       <GlobalStyle />
     </ThemeProvider>
