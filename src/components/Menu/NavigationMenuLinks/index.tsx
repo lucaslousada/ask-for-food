@@ -1,6 +1,6 @@
-import { MenuCategories } from '..';
+import { menuCategoriesData, MenuCategories } from '../menu-categories-data';
 
-import { Bell, CaretDoubleLeft } from 'phosphor-react';
+import { CaretDoubleLeft } from 'phosphor-react';
 
 import {
   Container,
@@ -24,7 +24,11 @@ export function NavigationMenuLinks({
   return (
     <Container isTheMenuVisible={isTheMenuVisible}>
       <Header>
-        <h2>{selectedMenuCategory}</h2>
+        <h2>
+          {Object.entries(menuCategoriesData).map(([key, value]) => {
+            return selectedMenuCategory === key ? value.name : null;
+          })}
+        </h2>
         <MinimizeMenuButton
           type="button"
           onClick={() => onIsTheMenuVisibleChange(false)}
@@ -32,41 +36,30 @@ export function NavigationMenuLinks({
           <CaretDoubleLeft weight="bold" alt="Fechar menu" />
         </MinimizeMenuButton>
       </Header>
+
       <nav>
-        <List
-          linkCategory="dashboard"
-          selectedMenuCategory={selectedMenuCategory}
-        >
-          <ListItem>
-            <a href="/">
-              <Bell />
-              <p>Dashboard</p>
-            </a>
-          </ListItem>
-          <ListItem>
-            <a href="/">
-              <Bell />
-              <p>Dashboard</p>
-            </a>
-          </ListItem>
-        </List>
-        <List
-          linkCategory="register"
-          selectedMenuCategory={selectedMenuCategory}
-        >
-          <ListItem>
-            <a href="/">
-              <Bell />
-              <p>Register</p>
-            </a>
-          </ListItem>
-          <ListItem>
-            <a href="/">
-              <Bell />
-              <p>Register</p>
-            </a>
-          </ListItem>
-        </List>
+        {Object.entries(menuCategoriesData).map(([key, value]) => {
+          return (
+            <List
+              key={key}
+              linkCategory={key as MenuCategories}
+              selectedMenuCategory={selectedMenuCategory}
+            >
+              {value.pages.map((page, index) => {
+                const Icon = page.icon;
+
+                return (
+                  <ListItem key={index}>
+                    <a href={page.url}>
+                      <Icon />
+                      <p>{page.name}</p>
+                    </a>
+                  </ListItem>
+                );
+              })}
+            </List>
+          );
+        })}
       </nav>
     </Container>
   );

@@ -1,7 +1,6 @@
-import { MenuCategories } from '..';
+import { menuCategoriesData, MenuCategories } from '../menu-categories-data';
 
 import { ReactComponent as LogoImg } from '../../../assets/logo.svg';
-import { House } from 'phosphor-react';
 
 import { Container, Logo, MenuCategoryButton } from './styles';
 
@@ -28,20 +27,20 @@ export function NavigationMenuCategories({
       </Logo>
 
       <div>
-        <MenuCategoryButton
-          category="dashboard"
-          selectedMenuCategory={selectedMenuCategory}
-          onClick={() => handleMenuCategoryChange('dashboard')}
-        >
-          <House alt="Principais páginas" />
-        </MenuCategoryButton>
-        <MenuCategoryButton
-          category="register"
-          selectedMenuCategory={selectedMenuCategory}
-          onClick={() => handleMenuCategoryChange('register')}
-        >
-          <House alt="Principais páginas" />
-        </MenuCategoryButton>
+        {Object.entries(menuCategoriesData).map(([key, value]) => {
+          const Icon = value.icon;
+
+          return (
+            <MenuCategoryButton
+              key={key}
+              category={key as MenuCategories}
+              selectedMenuCategory={selectedMenuCategory}
+              onClick={() => handleMenuCategoryChange(key as MenuCategories)}
+            >
+              <Icon alt={value.name} />
+            </MenuCategoryButton>
+          );
+        })}
       </div>
     </Container>
   );

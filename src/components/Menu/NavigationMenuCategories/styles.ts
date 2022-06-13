@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ButtonHTMLAttributes } from 'react';
-import { MenuCategories } from '..';
+import { MenuCategories } from '../menu-categories-data';
 
 interface MenuCategoryButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MenuCategories } from '..';
+import { MenuCategories } from '../menu-categories-data';
 
 interface ContainerProps {
   isTheMenuVisible: boolean;
