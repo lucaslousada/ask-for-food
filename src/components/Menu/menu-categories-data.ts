@@ -33,8 +33,8 @@ export const menuCategoriesData: MenuCategoriesData = {
     icon: ChartLineUp,
 
     pages: [
-      { name: 'Em breve', url: '/', icon: File },
-      { name: 'Em breve', url: '/', icon: File },
+      { name: 'Em breve', url: '/coming-soon/1', icon: File },
+      { name: 'Em breve', url: '/coming-soon/2', icon: File },
     ],
   },
 
