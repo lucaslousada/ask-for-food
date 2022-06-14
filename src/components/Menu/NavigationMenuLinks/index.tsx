@@ -54,28 +54,20 @@ export function NavigationMenuLinks({
       </Header>
 
       <nav>
-        {Object.entries(menuCategoriesData).map(([key, value]) => {
-          return (
-            <List
-              key={key}
-              linkCategory={key as MenuCategories}
-              selectedMenuCategory={selectedMenuCategory}
-            >
-              {value.pages.map((page, index) => {
-                const Icon = page.icon;
+        <List>
+          {menuCategoriesData[selectedMenuCategory].pages.map((page, index) => {
+            const Icon = page.icon;
 
-                return (
-                  <ListItem key={index}>
-                    <NavLink to={page.url} style={linkIsActive}>
-                      <Icon />
-                      <p>{page.name}</p>
-                    </NavLink>
-                  </ListItem>
-                );
-              })}
-            </List>
-          );
-        })}
+            return (
+              <ListItem key={index}>
+                <NavLink to={page.url} style={linkIsActive}>
+                  <Icon />
+                  <p>{page.name}</p>
+                </NavLink>
+              </ListItem>
+            );
+          })}
+        </List>
       </nav>
     </Container>
   );

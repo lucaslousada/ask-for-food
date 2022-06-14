@@ -1,13 +1,7 @@
 import styled from 'styled-components';
-import { MenuCategories } from '../menu-categories-data';
 
 interface ContainerProps {
   isTheMenuVisible: boolean;
-}
-
-interface ListProps {
-  linkCategory: MenuCategories;
-  selectedMenuCategory: MenuCategories;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -64,9 +58,7 @@ export const MinimizeMenuButton = styled.button`
   }
 `;
 
-export const List = styled.ul<ListProps>`
-  display: ${({ selectedMenuCategory, linkCategory }) =>
-    selectedMenuCategory === linkCategory ? 'initial' : 'none'};
+export const List = styled.ul`
   font-size: 14px;
 
   li a {
