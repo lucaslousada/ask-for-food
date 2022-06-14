@@ -6,6 +6,7 @@ const dark = {
     color_200: '#292B2F',
     color_300: '#2F3136',
     color_400: '#36393F',
+    color_600: '#4f545c',
     color_700: '#96989D',
     color_800: '#B9BBBE',
     color_900: '#FFFFFF',

@@ -1,12 +1,20 @@
 import { Menu } from '../../components/Menu';
+import { Header } from '../../components/Header';
+import { NewRegistrationButton } from '../../components/NewRegistrationButton';
 
-import { Container } from './styles';
+import { Container, Main } from './styles';
 
 export function Customers() {
   return (
     <Container>
       <Menu activeCategory="registers" />
-      <main>Content</main>
+      <Main>
+        <Header
+          title="Clientes"
+          newRegistrationButton={<NewRegistrationButton title="Novo cliente" />}
+        />
+        <p>Content</p>
+      </Main>
     </Container>
   );
 }
