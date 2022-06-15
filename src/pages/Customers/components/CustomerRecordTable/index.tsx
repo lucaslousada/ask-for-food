@@ -1,7 +1,7 @@
 import { Customers } from '../..';
 import { normalizePhoneNumber } from '../../../../utils/masks';
 
-import { RecordsTable } from '../../../../styles/shared/RecordsTable';
+import { Container } from './styles';
 
 interface CustomerRecordTableProps {
   customers: Customers[];
@@ -9,7 +9,7 @@ interface CustomerRecordTableProps {
 
 export function CustomerRecordTable({ customers }: CustomerRecordTableProps) {
   return (
-    <RecordsTable>
+    <Container>
       <thead>
         <tr>
           <th>Nome</th>
@@ -49,6 +49,6 @@ export function CustomerRecordTable({ customers }: CustomerRecordTableProps) {
           </tr>
         ))}
       </tbody>
-    </RecordsTable>
+    </Container>
   );
 }

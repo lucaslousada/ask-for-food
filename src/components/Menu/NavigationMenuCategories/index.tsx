@@ -32,6 +32,7 @@ export function NavigationMenuCategories({
 
           return (
             <MenuCategoryButton
+              type="button"
               key={key}
               category={key as MenuCategories}
               selectedMenuCategory={selectedMenuCategory}
