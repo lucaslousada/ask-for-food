@@ -1,0 +1,70 @@
+{
+  "products": [],
+  "customers": [
+    {
+      "name": "Luan Bandeira Maia",
+      "phone": "89972136188",
+      "address": {
+        "street_name": "Rua Carlos B.",
+        "number": "155",
+        "neighborhood": "Vale Quem Tem",
+        "city": "Teresina",
+        "complement": "Casa"
+      },
+      "createdAt": "2022-03-08T17:03:51.224Z",
+      "id": 1
+    },
+    {
+      "name": "Aurélio Camelo Pontes",
+      "phone": "82988184783",
+      "address": {
+        "street_name": "Rua Melo Morais",
+        "number": "122",
+        "neighborhood": "Centro",
+        "city": "Maceió",
+        "complement": "Casa"
+      },
+      "createdAt": "2022-03-08T17:03:51.224Z",
+      "id": 2
+    },
+    {
+      "name": "Roselaine Temperini Santana",
+      "phone": "12987580244",
+      "address": {
+        "street_name": "Alameda das Orquídeas",
+        "number": "134",
+        "neighborhood": "Loteamento Retiro",
+        "city": "Atibaia",
+        "complement": "Casa"
+      },
+      "createdAt": "2022-03-08T17:03:51.224Z",
+      "id": 3
+    },
+    {
+      "name": "Vinícius Araujo Mata",
+      "phone": "85980024194",
+      "address": {
+        "street_name": "Rua Engenheiro José Barreto",
+        "number": "621",
+        "neighborhood": "Flores",
+        "city": "Iguatu",
+        "complement": "Casa"
+      },
+      "createdAt": "2022-03-08T17:03:51.224Z",
+      "id": 4
+    },
+    {
+      "name": "Bryan Albergaria Belmiro",
+      "phone": "55987743608",
+      "address": {
+        "street_name": "Rua Ettore Giovanni Perizzolo",
+        "number": "831",
+        "neighborhood": "Progresso",
+        "city": "Bento Gonçalves",
+        "complement": "Casa"
+      },
+      "createdAt": "2022-03-08T17:03:51.224Z",
+      "id": 5
+    }
+  ]
+}
