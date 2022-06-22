@@ -6,7 +6,7 @@ export const Container = styled.button`
   column-gap: 5px;
   padding: 12px 16px;
   border-radius: 5px;
-  border: 2px solid ${({ theme }) => theme.colors.transparent_color_100};
+  border: 1px solid ${({ theme }) => theme.colors.transparent_color_100};
   background-color: ${({ theme }) => theme.colors.transparent_color_200};
   font-size: 12px;
   transition: background-color ${({ theme }) => theme.transitions.default};

@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { Menu } from '../../components/Menu';
 import { Header } from '../../components/Header';
-import { NewRegistrationButton } from '../../components/NewRegistrationButton';
 import { CustomerRecordTable } from './components/CustomerRecordTable';
+import { RegisterAndEditModal } from '../../components/RegisterAndEditModal';
+import { CustomerForm } from './components/CustomerForm';
 
 import { Container, Main } from './styles';
 
@@ -34,7 +35,12 @@ export function Customers() {
       <Main>
         <Header
           title="Clientes"
-          newRegistrationButton={<NewRegistrationButton title="Novo cliente" />}
+          newRegistrationButton={
+            <RegisterAndEditModal
+              title="Cadastrar cliente"
+              form={CustomerForm}
+            />
+          }
         />
         <CustomerRecordTable customers={customers} />
       </Main>

@@ -1,16 +1,23 @@
-import { Container } from './styles';
+import { ButtonHTMLAttributes, forwardRef } from 'react';
 
 import { Plus } from 'phosphor-react';
 
-interface NewRegistrationButtonProps {
+import { Container } from './styles';
+
+interface NewRegistrationButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
+  modalTriggerProps?: string[];
 }
 
-export function NewRegistrationButton({ title }: NewRegistrationButtonProps) {
+export const NewRegistrationButton = forwardRef<
+  HTMLButtonElement,
+  NewRegistrationButtonProps
+>(({ title, ...modalTriggerProps }, ref) => {
   return (
-    <Container type="button">
-      <Plus weight="bold" />
+    <Container type="button" ref={ref} {...modalTriggerProps}>
+      <Plus />
       {title}
     </Container>
   );
-}
+});

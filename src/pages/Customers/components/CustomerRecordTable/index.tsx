@@ -21,7 +21,7 @@ export function CustomerRecordTable({ customers }: CustomerRecordTableProps) {
 
       <tbody>
         {customers.map(customer => (
-          <tr>
+          <tr key={customer.id}>
             <td>
               <p>{customer.name}</p>
               <p>{normalizePhoneNumber(customer.phone)}</p>
