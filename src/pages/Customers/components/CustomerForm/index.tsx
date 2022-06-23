@@ -1,4 +1,5 @@
 import { Formik, Form } from 'formik';
+import InputMask from 'react-input-mask';
 import { api } from '../../../../services/api';
 import { Customers } from '../..';
 import { Field } from '../../../../components/Form/Field';
@@ -25,6 +26,7 @@ export function CustomerForm({
   async function handleCustomerFormSubmit(values: CustomerForm) {
     const response = await api.post('/customers', {
       ...values,
+      phone: values.phone.replace(/[^0-9]/g, ''),
       createdAt: new Date(),
     });
     const customer = response.data;
@@ -51,7 +53,13 @@ export function CustomerForm({
         <Form>
           <FieldsWrapper>
             <Field type="text" name="name" label="Nome" />
-            <Field type="text" name="phone" label="Telefone" />
+            <Field
+              component={InputMask}
+              mask="(99) 99999-9999"
+              type="text"
+              name="phone"
+              label="Telefone"
+            />
             <Field type="text" name="address.street_name" label="Rua" />
             <Field type="text" name="address.number" label="Número" />
             <Field type="text" name="address.neighborhood" label="Bairro" />
