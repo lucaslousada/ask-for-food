@@ -7,7 +7,7 @@ import { Container } from './styles';
 interface NewRegistrationButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
-  modalTriggerProps?: string[];
+  [x: string]: any;
 }
 
 export const NewRegistrationButton = forwardRef<
