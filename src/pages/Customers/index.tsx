@@ -24,6 +24,8 @@ export interface Customers {
 
 export function Customers() {
   const [customers, setCustomers] = useState<Customers[]>([]);
+  const [registerAndEditModalIsOpen, setRegisterAndEditModalIsOpen] =
+    useState(false);
 
   useEffect(() => {
     api.get('/customers').then(response => setCustomers(response.data));
@@ -38,7 +40,15 @@ export function Customers() {
           newRegistrationButton={
             <RegisterAndEditModal
               title="Cadastrar cliente"
-              form={CustomerForm}
+              modalIsOpen={registerAndEditModalIsOpen}
+              onModalOpenChange={setRegisterAndEditModalIsOpen}
+              form={
+                <CustomerForm
+                  customers={customers}
+                  onCustomersChange={setCustomers}
+                  onModalOpenChange={setRegisterAndEditModalIsOpen}
+                />
+              }
             />
           }
         />

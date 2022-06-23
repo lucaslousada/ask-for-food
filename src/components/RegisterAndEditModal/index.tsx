@@ -1,4 +1,4 @@
-import { ElementType, useRef } from 'react';
+import { ReactNode, useRef } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { NewRegistrationButton } from '../NewRegistrationButton';
 
@@ -7,48 +7,40 @@ import {
   DialogOverlay,
   DialogClose,
   DialogTitle,
-  SubmitButton,
-  CancelButton,
 } from './styles';
 
 import { X } from 'phosphor-react';
 
 interface RegisterAndEditModalProps {
   title: string;
-  form: ElementType;
+  form: ReactNode;
+  modalIsOpen: boolean;
+  onModalOpenChange: (value: boolean) => void;
 }
 
 export function RegisterAndEditModal({
   title,
   form,
+  modalIsOpen,
+  onModalOpenChange,
 }: RegisterAndEditModalProps) {
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
 
-  const FormComponent = form;
-
   return (
-    <Dialog.Root modal>
+    <Dialog.Root modal open={modalIsOpen} onOpenChange={onModalOpenChange}>
       <Dialog.Trigger asChild>
         <NewRegistrationButton ref={triggerButtonRef} title="Novo cliente" />
       </Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay>
           <DialogContent aria-describedby={undefined}>
-            <div>
-              <header>
-                <DialogTitle>{title}</DialogTitle>
-                <DialogClose>
-                  <X alt="Fechar" />
-                </DialogClose>
-              </header>
-              <FormComponent />
-            </div>
-            <footer>
-              <CancelButton>Cancelar</CancelButton>
-              <SubmitButton type="submit" form="modalForm">
-                Cadastrar
-              </SubmitButton>
-            </footer>
+            <header>
+              <DialogTitle>{title}</DialogTitle>
+              <DialogClose>
+                <X alt="Fechar" />
+              </DialogClose>
+            </header>
+            {form}
           </DialogContent>
         </DialogOverlay>
       </Dialog.Portal>

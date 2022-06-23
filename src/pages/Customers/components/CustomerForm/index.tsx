@@ -1,10 +1,72 @@
-import { Container } from './styles';
+import { Formik, Form } from 'formik';
+import { api } from '../../../../services/api';
+import { Customers } from '../..';
+import { Field } from '../../../../components/Form/Field';
 
-export function CustomerForm() {
+import { FieldsWrapper } from './styles';
+import {
+  CloseDialogButton,
+  SubmitButton,
+} from '../../../../styles/shared/Buttons';
+
+export type CustomerForm = Omit<Customers, 'id' | 'createdAt'>;
+
+interface CustomerFormProps {
+  customers: Customers[];
+  onCustomersChange: (customers: Customers[]) => void;
+  onModalOpenChange: (value: boolean) => void;
+}
+
+export function CustomerForm({
+  customers,
+  onCustomersChange,
+  onModalOpenChange,
+}: CustomerFormProps) {
+  async function handleCustomerFormSubmit(values: CustomerForm) {
+    const response = await api.post('/customers', {
+      ...values,
+      createdAt: new Date(),
+    });
+    const customer = response.data;
+    onCustomersChange([...customers, customer]);
+    onModalOpenChange(false);
+  }
+
   return (
-    <Container id="modalForm">
-      <label htmlFor="name">Nome</label>
-      <input id="name" type="text" />
-    </Container>
+    <Formik
+      initialValues={{
+        name: '',
+        phone: '',
+        address: {
+          street_name: '',
+          number: '',
+          neighborhood: '',
+          city: '',
+          complement: '',
+        },
+      }}
+      onSubmit={handleCustomerFormSubmit}
+    >
+      {({ isSubmitting }) => (
+        <Form>
+          <FieldsWrapper>
+            <Field type="text" name="name" label="Nome" />
+            <Field type="text" name="phone" label="Telefone" />
+            <Field type="text" name="address.street_name" label="Rua" />
+            <Field type="text" name="address.number" label="Número" />
+            <Field type="text" name="address.neighborhood" label="Bairro" />
+            <Field type="text" name="address.city" label="Cidade" />
+            <Field type="text" name="address.complement" label="Complemento" />
+          </FieldsWrapper>
+
+          <div>
+            <CloseDialogButton>Cancelar</CloseDialogButton>
+            <SubmitButton type="submit" disabled={isSubmitting}>
+              Cadastrar
+            </SubmitButton>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 }
