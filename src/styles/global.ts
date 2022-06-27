@@ -45,4 +45,24 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  /* Scrollbar */
+
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  ::-webkit-scrollbar-thumb{
+    background-color: ${({ theme }) => theme.colors.transparent_color_100};
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
 `;
