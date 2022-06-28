@@ -19,6 +19,8 @@ export const DialogContent = styled(Dialog.Content)`
   border-radius: 5px;
   max-width: 750px;
   width: 90%;
+  max-height: 510px;
+  overflow-y: auto;
 
   header {
     display: flex;

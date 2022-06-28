@@ -18,6 +18,7 @@ declare module 'styled-components' {
       transparent_color_200: string;
 
       green: string;
+      red: string;
     };
 
     transitions: {

@@ -1,7 +1,9 @@
+import { ChangeEvent } from 'react';
 import { Formik, Form } from 'formik';
 import InputMask from 'react-input-mask';
 import { api } from '../../../../services/api';
 import { Customers } from '../..';
+import { schema } from './schema';
 import { Field } from '../../../../components/Form/Field';
 
 import { FieldsWrapper } from './styles';
@@ -26,7 +28,6 @@ export function CustomerForm({
   async function handleCustomerFormSubmit(values: CustomerForm) {
     const response = await api.post('/customers', {
       ...values,
-      phone: values.phone.replace(/[^0-9]/g, ''),
       createdAt: new Date(),
     });
     const customer = response.data;
@@ -36,6 +37,7 @@ export function CustomerForm({
 
   return (
     <Formik
+      validationSchema={schema}
       initialValues={{
         name: '',
         phone: '',
@@ -49,13 +51,17 @@ export function CustomerForm({
       }}
       onSubmit={handleCustomerFormSubmit}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, setFieldValue }) => (
         <Form>
           <FieldsWrapper>
             <Field type="text" name="name" label="Nome" />
             <Field
               component={InputMask}
               mask="(99) 99999-9999"
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                const { value } = e.target;
+                setFieldValue('phone', value.replace(/[^0-9]/g, ''));
+              }}
               type="text"
               name="phone"
               label="Telefone"

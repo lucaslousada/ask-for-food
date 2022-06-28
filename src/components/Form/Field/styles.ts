@@ -20,5 +20,17 @@ export const Container = styled.div`
   }
 
   span {
+    display: flex;
+    align-items: flex-start;
+    column-gap: 5px;
+    color: ${({ theme }) => theme.colors.red};
+    font-size: 12px;
+    margin-top: 5px;
+
+    svg {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+    }
   }
 `;

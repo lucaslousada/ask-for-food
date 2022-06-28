@@ -15,6 +15,7 @@ const dark = {
     transparent_color_200: 'rgba(79, 84, 92, 0.4)',
 
     green: '#3BA55D',
+    red: '#D83C3E',
   },
 
   transitions: {

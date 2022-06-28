@@ -1,6 +1,8 @@
 import { ElementType } from 'react';
 import { useField } from 'formik';
 
+import { WarningCircle } from 'phosphor-react';
+
 import { Container } from './styles';
 
 interface FieldProps {
@@ -25,7 +27,10 @@ export function Field({
       {label && <label htmlFor={id}>{label}</label>}
       <InputComponent id={id} {...inputProps} {...rest} />
       {metaProps.error && metaProps.touched && (
-        <span>{metaProps.error.toString()}</span>
+        <span>
+          <WarningCircle weight="duotone" />
+          {metaProps.error.toString()}
+        </span>
       )}
     </Container>
   );
