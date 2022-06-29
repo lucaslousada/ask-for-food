@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { darken, transparentize } from 'polished';
-import { DialogClose } from '@radix-ui/react-dialog';
 
 export const SubmitButton = styled.button`
   background-color: ${({ theme }) => theme.colors.green};
@@ -25,14 +24,23 @@ export const SubmitButton = styled.button`
   }
 `;
 
-export const CloseDialogButton = styled(DialogClose)`
-  background-color: transparent;
-  border: none;
-  text-decoration: underline transparent;
-  text-underline-offset: 2px;
-  transition: text-decoration ${({ theme }) => theme.transitions.default};
+export const NewRegistrationButton = styled.button`
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  padding: 12px 16px;
+  border-radius: 5px;
+  border: 1px solid ${({ theme }) => theme.colors.transparent_color_100};
+  background-color: ${({ theme }) => theme.colors.transparent_color_200};
+  font-size: 12px;
+  transition: background-color ${({ theme }) => theme.transitions.default};
 
   &:hover {
-    text-decoration-color: ${({ theme }) => theme.colors.color_900};
+    background-color: ${({ theme }) => theme.colors.color_600};
+  }
+
+  > svg {
+    width: 15px;
+    height: 15px;
   }
 `;

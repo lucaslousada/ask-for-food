@@ -1,24 +1,25 @@
 import styled from 'styled-components';
-import * as Dialog from '@radix-ui/react-dialog';
-import { transparentize } from 'polished';
+import {
+  Overlay,
+  Content,
+  Close,
+  Title,
+  Trigger,
+} from '@radix-ui/react-dialog';
 
-export const DialogOverlay = styled(Dialog.Overlay)`
-  position: fixed;
-  inset: 0;
+import {
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+} from '../../styles/shared/Modal';
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: ${({ theme }) =>
-    transparentize(0.2, theme.colors.color_100)};
+export const DialogOverlay = styled(Overlay)`
+  ${ModalOverlay}
 `;
 
-export const DialogContent = styled(Dialog.Content)`
-  background-color: ${({ theme }) => theme.colors.color_400};
-  border-radius: 5px;
+export const DialogContent = styled(Content)`
+  ${ModalContent}
   max-width: 750px;
-  width: 90%;
   max-height: 510px;
   overflow-y: auto;
 
@@ -46,25 +47,10 @@ export const DialogContent = styled(Dialog.Content)`
   }
 `;
 
-export const DialogClose = styled(Dialog.Close)`
-  display: flex;
-  background-color: transparent;
-  border: none;
-  border-radius: 4px;
-  padding: 4px;
-  transform: translateX(4px);
-  transition: background-color ${({ theme }) => theme.transitions.default};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.transparent_color_200};
-  }
-
-  > svg {
-    width: 20px;
-    height: 20px;
-  }
+export const DialogClose = styled(Close)`
+  ${ModalCloseButton}
 `;
 
-export const DialogTitle = styled(Dialog.Title)`
+export const DialogTitle = styled(Title)`
   font-size: 24px;
 `;

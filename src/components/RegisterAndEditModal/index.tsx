@@ -1,6 +1,9 @@
 import { ReactNode, useRef } from 'react';
-import * as Dialog from '@radix-ui/react-dialog';
-import { NewRegistrationButton } from '../NewRegistrationButton';
+import {
+  Root as DialogRoot,
+  Trigger as DialogTrigger,
+  Portal as DialogPortal,
+} from '@radix-ui/react-dialog';
 
 import {
   DialogContent,
@@ -9,7 +12,8 @@ import {
   DialogTitle,
 } from './styles';
 
-import { X } from 'phosphor-react';
+import { Plus, X } from 'phosphor-react';
+import { NewRegistrationButton } from '../../styles/shared/Buttons';
 
 interface RegisterAndEditModalProps {
   title: string;
@@ -27,15 +31,20 @@ export function RegisterAndEditModal({
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <Dialog.Root modal open={modalIsOpen} onOpenChange={onModalOpenChange}>
-      <Dialog.Trigger asChild>
-        <NewRegistrationButton ref={triggerButtonRef} title="Novo cliente" />
-      </Dialog.Trigger>
-      <Dialog.Portal>
+    <DialogRoot modal open={modalIsOpen} onOpenChange={onModalOpenChange}>
+      <DialogTrigger asChild>
+        <NewRegistrationButton>
+          <Plus />
+          {title}
+        </NewRegistrationButton>
+      </DialogTrigger>
+      <DialogPortal>
         <DialogOverlay>
           <DialogContent aria-describedby={undefined}>
             <header>
-              <DialogTitle>{title}</DialogTitle>
+              <DialogTitle asChild>
+                <h3>{title}</h3>
+              </DialogTitle>
               <DialogClose>
                 <X alt="Fechar" />
               </DialogClose>
@@ -43,7 +52,7 @@ export function RegisterAndEditModal({
             {form}
           </DialogContent>
         </DialogOverlay>
-      </Dialog.Portal>
-    </Dialog.Root>
+      </DialogPortal>
+    </DialogRoot>
   );
 }

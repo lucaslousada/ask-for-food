@@ -7,10 +7,8 @@ import { schema } from './schema';
 import { Field } from '../../../../components/Form/Field';
 
 import { FieldsWrapper } from './styles';
-import {
-  CloseDialogButton,
-  SubmitButton,
-} from '../../../../styles/shared/Buttons';
+import { SubmitButton } from '../../../../styles/shared/Buttons';
+import { ModalCancelButton } from '../../../../styles/shared/Modal';
 
 export type CustomerForm = Omit<Customers, 'id' | 'createdAt'>;
 
@@ -74,7 +72,7 @@ export function CustomerForm({
           </FieldsWrapper>
 
           <div>
-            <CloseDialogButton>Cancelar</CloseDialogButton>
+            <ModalCancelButton>Cancelar</ModalCancelButton>
             <SubmitButton type="submit" disabled={isSubmitting}>
               Cadastrar
             </SubmitButton>
