@@ -4,7 +4,9 @@ import { ptShort } from 'yup-locale-pt';
 Yup.setLocale(ptShort);
 
 export const schema = Yup.object().shape({
-  name: Yup.string().required(),
+  name: Yup.string()
+    .matches(/^[\p{L}'][ \p{L}'-]*[\p{L}]$/u, 'Nome inválido.')
+    .required(),
   phone: Yup.string()
     .length(11, 'O telefone deve ter ${length} dígitos.')
     .required(),
