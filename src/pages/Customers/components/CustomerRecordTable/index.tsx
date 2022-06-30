@@ -1,5 +1,6 @@
 import { Customers } from '../..';
 import { normalizePhoneNumber } from '../../../../utils/masks';
+import { ViewCustomerDetailsModal } from '../ViewCustomerDetailsModal';
 
 import { Container } from './styles';
 
@@ -16,6 +17,7 @@ export function CustomerRecordTable({ customers }: CustomerRecordTableProps) {
           <th>Rua</th>
           <th>Bairro</th>
           <th>Cliente desde</th>
+          <th></th>
         </tr>
       </thead>
 
@@ -45,6 +47,9 @@ export function CustomerRecordTable({ customers }: CustomerRecordTableProps) {
                   minute: '2-digit',
                 }).format(new Date(customer.createdAt))}
               </p>
+            </td>
+            <td>
+              <ViewCustomerDetailsModal customer={customer} />
             </td>
           </tr>
         ))}

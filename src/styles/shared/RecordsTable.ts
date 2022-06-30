@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import { css } from 'styled-components';
+import { transparentize } from 'polished';
 
-export const RecordsTable = styled.table`
+export const RecordsTable = css`
   margin-top: 40px;
   width: 100%;
   border-spacing: 0;
@@ -9,7 +10,7 @@ export const RecordsTable = styled.table`
 
   th,
   td {
-    padding: 15px 20px;
+    padding: 15px 0 15px 20px;
     text-align: left;
   }
 
@@ -34,10 +35,24 @@ export const RecordsTable = styled.table`
   }
 
   tbody {
+    tr {
+      transition: background-color ${({ theme }) => theme.transitions.default};
+
+      &:hover {
+        background-color: ${({ theme }) =>
+          transparentize(0.8, theme.colors.color_600)};
+      }
+    }
+
     td {
       text-transform: capitalize;
       font-size: 14px;
       vertical-align: top;
+
+      &:last-of-type {
+        padding: 8px 20px;
+        vertical-align: middle;
+      }
 
       p:last-of-type {
         font-size: 12px;

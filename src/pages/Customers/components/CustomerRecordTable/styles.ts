@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 import { RecordsTable } from '../../../../styles/shared/RecordsTable';
 
-export const Container = styled(RecordsTable)`
+export const Container = styled.table`
+  ${RecordsTable}
+
   th:nth-of-type(1),
   td:nth-of-type(1),
   th:nth-of-type(2),
   td:nth-of-type(2) {
-    width: 29%;
+    width: 26.6%;
   }
 
   th:nth-of-type(3),
@@ -17,10 +19,10 @@ export const Container = styled(RecordsTable)`
 
   th:nth-of-type(4),
   td:nth-of-type(4) {
-    width: 24%;
+    width: 20.5%;
   }
 
-  td:last-of-type {
+  td:nth-of-type(4) {
     text-transform: none;
   }
 `;

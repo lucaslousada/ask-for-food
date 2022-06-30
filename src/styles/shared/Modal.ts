@@ -22,15 +22,14 @@ export const ModalContent = css`
 
 export const ModalCloseButton = css`
   display: flex;
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.transparent_color_200};
   border: none;
   border-radius: 4px;
   padding: 4px;
-  transform: translateX(4px);
   transition: background-color ${({ theme }) => theme.transitions.default};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.transparent_color_200};
+    background-color: ${({ theme }) => theme.colors.color_600};
   }
 
   > svg {
