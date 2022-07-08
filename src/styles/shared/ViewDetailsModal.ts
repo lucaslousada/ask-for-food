@@ -1,18 +1,7 @@
 import styled from 'styled-components';
-import { transparentize } from 'polished';
-import {
-  Overlay,
-  Trigger,
-  Close,
-  Content,
-  Title,
-} from '@radix-ui/react-dialog';
+import { Overlay, Close, Content, Title } from '@radix-ui/react-dialog';
 
-import {
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
-} from '../../../../styles/shared/Modal';
+import { ModalCloseButton, ModalContent, ModalOverlay } from './Modal';
 
 export const DialogOverlay = styled(Overlay)`
   ${ModalOverlay}
@@ -95,31 +84,6 @@ export const DialogContent = styled(Content)`
         width: 100%;
       }
     }
-  }
-`;
-
-export const DialogTrigger = styled(Trigger)`
-  display: flex;
-  padding: 7px;
-  margin: 0 auto;
-  background-color: transparent;
-  border: none;
-  border-radius: 50%;
-  transition: background-color ${({ theme }) => theme.transitions.default};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.transparent_color_100};
-
-    svg {
-      color: ${({ theme }) => theme.colors.color_900};
-    }
-  }
-
-  svg {
-    width: 22px;
-    height: 22px;
-    color: ${({ theme }) => transparentize(0.6, theme.colors.color_900)};
-    transition: color ${({ theme }) => theme.transitions.default};
   }
 `;
 

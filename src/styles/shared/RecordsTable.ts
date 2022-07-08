@@ -49,14 +49,42 @@ export const RecordsTable = css`
       font-size: 14px;
       vertical-align: top;
 
-      &:last-of-type {
-        padding: 8px 20px;
-        vertical-align: middle;
-      }
-
       p:last-of-type {
         font-size: 12px;
         color: ${({ theme }) => theme.colors.color_800};
+      }
+    }
+
+    td:last-of-type {
+      padding: 8px 20px;
+      vertical-align: middle;
+
+      a {
+        display: flex;
+        width: min-content;
+        padding: 7px;
+        margin: 0 auto;
+        background-color: transparent;
+        border: none;
+        border-radius: 50%;
+        transition: background-color ${({ theme }) => theme.transitions.default};
+
+        &:hover {
+          background-color: ${({ theme }) =>
+            theme.colors.transparent_color_100};
+
+          svg {
+            color: ${({ theme }) => theme.colors.color_900};
+          }
+        }
+
+        svg {
+          margin: 0 auto;
+          width: 22px;
+          height: 22px;
+          color: ${({ theme }) => transparentize(0.6, theme.colors.color_900)};
+          transition: color ${({ theme }) => theme.transitions.default};
+        }
       }
     }
 

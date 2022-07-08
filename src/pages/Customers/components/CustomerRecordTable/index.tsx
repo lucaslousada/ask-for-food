@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import { Customers } from '../..';
 import { normalizePhoneNumber } from '../../../../utils/masks';
-import { ViewCustomerDetailsModal } from '../ViewCustomerDetailsModal';
+
+import { Info } from 'phosphor-react';
 
 import { Container } from './styles';
 
@@ -49,7 +51,9 @@ export function CustomerRecordTable({ customers }: CustomerRecordTableProps) {
               </p>
             </td>
             <td>
-              <ViewCustomerDetailsModal customer={customer} />
+              <Link to={`./${customer.id}`}>
+                <Info alt="Ver detalhes" />
+              </Link>
             </td>
           </tr>
         ))}

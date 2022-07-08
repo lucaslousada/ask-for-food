@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import { api } from '../../services/api';
 import { Menu } from '../../components/Menu';
 import { Header } from '../../components/Header';
@@ -32,28 +33,31 @@ export function Customers() {
   }, []);
 
   return (
-    <Container>
-      <Menu activeCategory="registers" />
-      <Main>
-        <Header
-          title="Clientes"
-          newRegistrationButton={
-            <RegisterAndEditModal
-              title="Cadastrar cliente"
-              modalIsOpen={registerAndEditModalIsOpen}
-              onModalOpenChange={setRegisterAndEditModalIsOpen}
-              form={
-                <CustomerForm
-                  customers={customers}
-                  onCustomersChange={setCustomers}
-                  onModalOpenChange={setRegisterAndEditModalIsOpen}
-                />
-              }
-            />
-          }
-        />
-        <CustomerRecordTable customers={customers} />
-      </Main>
-    </Container>
+    <>
+      <Container>
+        <Menu activeCategory="registers" />
+        <Main>
+          <Header
+            title="Clientes"
+            newRegistrationButton={
+              <RegisterAndEditModal
+                title="Cadastrar cliente"
+                modalIsOpen={registerAndEditModalIsOpen}
+                onModalOpenChange={setRegisterAndEditModalIsOpen}
+                form={
+                  <CustomerForm
+                    customers={customers}
+                    onCustomersChange={setCustomers}
+                    onModalOpenChange={setRegisterAndEditModalIsOpen}
+                  />
+                }
+              />
+            }
+          />
+          <CustomerRecordTable customers={customers} />
+        </Main>
+      </Container>
+      <Outlet />
+    </>
   );
 }
