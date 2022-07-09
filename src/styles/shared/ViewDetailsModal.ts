@@ -87,24 +87,6 @@ export const DialogContent = styled(Content)`
   }
 `;
 
-export const MoreOptions = styled.button`
-  display: flex;
-  background-color: ${({ theme }) => theme.colors.transparent_color_200};
-  border: none;
-  border-radius: 4px;
-  padding: 4px;
-  transition: background-color ${({ theme }) => theme.transitions.default};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.color_600};
-  }
-
-  > svg {
-    width: 20px;
-    height: 20px;
-  }
-`;
-
 export const DialogClose = styled(Close)`
   ${ModalCloseButton}
 `;

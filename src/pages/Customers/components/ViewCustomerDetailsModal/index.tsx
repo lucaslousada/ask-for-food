@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { api } from '../../../../services/api';
 import { Customers } from '../..';
 import { normalizePhoneNumber } from '../../../../utils/masks';
+import { MoreActionsInSeeDetails } from '../../../../components/MoreActionsInSeeDetails';
 import {
   Root as DialogRoot,
   Portal as DialogPortal,
@@ -14,10 +15,9 @@ import {
   DialogOverlay,
   DialogContent,
   DialogTitle,
-  MoreOptions,
 } from '../../../../styles/shared/ViewDetailsModal';
 
-import { DotsThreeVertical, X } from 'phosphor-react';
+import { X } from 'phosphor-react';
 
 export function ViewCustomerDetailsModal() {
   const [modaIsOpen, setModalIsOpen] = useState(true);
@@ -48,9 +48,7 @@ export function ViewCustomerDetailsModal() {
           {Object.keys(customer).length > 0 ? (
             <DialogContent aria-describedby={undefined}>
               <header>
-                <MoreOptions type="button">
-                  <DotsThreeVertical alt="Mais opções" />
-                </MoreOptions>
+                <MoreActionsInSeeDetails />
                 <DialogClose>
                   <X alt="Fechar" />
                 </DialogClose>
