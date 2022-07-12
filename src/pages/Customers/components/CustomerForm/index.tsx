@@ -73,7 +73,7 @@ export function CustomerForm({
 
           <div>
             <ModalCancelButton>Cancelar</ModalCancelButton>
-            <SubmitButton type="submit" disabled={isSubmitting}>
+            <SubmitButton type="submit" disabled={isSubmitting} color="green">
               Cadastrar
             </SubmitButton>
           </div>

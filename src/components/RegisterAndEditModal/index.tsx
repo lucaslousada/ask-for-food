@@ -31,7 +31,7 @@ export function RegisterAndEditModal({
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <DialogRoot modal open={modalIsOpen} onOpenChange={onModalOpenChange}>
+    <DialogRoot open={modalIsOpen} onOpenChange={onModalOpenChange}>
       <DialogTrigger asChild>
         <NewRegistrationButton>
           <Plus />

@@ -1,8 +1,14 @@
+import { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { darken, transparentize } from 'polished';
 
-export const SubmitButton = styled.button`
-  background-color: ${({ theme }) => theme.colors.green};
+interface SubmitButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  type: 'submit';
+  color: 'red' | 'green';
+}
+
+export const SubmitButton = styled.button<SubmitButtonProps>`
+  background-color: ${({ theme, color }) => theme.colors[color]};
   border-radius: 5px;
   font-size: 14px;
   padding: 13px 20px;
@@ -10,16 +16,17 @@ export const SubmitButton = styled.button`
   transition: background-color ${({ theme }) => theme.transitions.default};
 
   &:hover {
-    background-color: ${({ theme }) => darken(0.1, theme.colors.green)};
+    background-color: ${({ theme, color }) => darken(0.1, theme.colors[color])};
   }
 
   &:disabled {
     cursor: not-allowed;
-    background-color: ${({ theme }) => transparentize(0.5, theme.colors.green)};
+    background-color: ${({ theme, color }) =>
+      transparentize(0.5, theme.colors[color])};
 
     &:hover {
-      background-color: ${({ theme }) =>
-        transparentize(0.5, theme.colors.green)};
+      background-color: ${({ theme, color }) =>
+        transparentize(0.5, theme.colors[color])};
     }
   }
 `;

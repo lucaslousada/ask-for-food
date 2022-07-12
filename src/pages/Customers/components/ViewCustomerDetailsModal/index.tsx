@@ -42,7 +42,7 @@ export function ViewCustomerDetailsModal() {
   }, []);
 
   return (
-    <DialogRoot modal open={modaIsOpen} onOpenChange={setModalIsOpen}>
+    <DialogRoot open={modaIsOpen} onOpenChange={setModalIsOpen}>
       <DialogPortal>
         <DialogOverlay>
           {Object.keys(customer).length > 0 ? (

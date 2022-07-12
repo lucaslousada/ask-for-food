@@ -1,15 +1,10 @@
 import styled from 'styled-components';
-import {
-  Overlay,
-  Content,
-  Close,
-  Title,
-  Trigger,
-} from '@radix-ui/react-dialog';
+import { Overlay, Content, Close, Title } from '@radix-ui/react-dialog';
 
 import {
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
   ModalOverlay,
 } from '../../styles/shared/Modal';
 
@@ -36,14 +31,7 @@ export const DialogContent = styled(Content)`
   }
 
   form > div:last-of-type {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    column-gap: 40px;
-
-    padding: 20px 30px;
-    background-color: ${({ theme }) => theme.colors.transparent_color_200};
-    border-top: 1px solid ${({ theme }) => theme.colors.transparent_color_100};
+    ${ModalFooter}
   }
 `;
 
