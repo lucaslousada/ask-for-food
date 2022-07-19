@@ -9,7 +9,7 @@ import { CustomerForm } from './components/CustomerForm';
 
 import { Container, Main } from './styles';
 
-export interface Customers {
+export interface CustomerDataType {
   id: number;
   name: string;
   phone: string;
@@ -24,7 +24,7 @@ export interface Customers {
 }
 
 export function Customers() {
-  const [customers, setCustomers] = useState<Customers[]>([]);
+  const [customers, setCustomers] = useState<CustomerDataType[]>([]);
   const [registerAndEditModalIsOpen, setRegisterAndEditModalIsOpen] =
     useState(false);
 
@@ -57,6 +57,7 @@ export function Customers() {
           <CustomerRecordTable customers={customers} />
         </Main>
       </Container>
+
       <Outlet />
     </>
   );

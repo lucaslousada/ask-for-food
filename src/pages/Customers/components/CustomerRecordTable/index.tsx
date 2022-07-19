@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Customers } from '../..';
+import { CustomerDataType } from '../..';
 import { normalizePhoneNumber } from '../../../../utils/masks';
 
 import { Info } from 'phosphor-react';
@@ -7,7 +7,7 @@ import { Info } from 'phosphor-react';
 import { Container } from './styles';
 
 interface CustomerRecordTableProps {
-  customers: Customers[];
+  customers: CustomerDataType[];
 }
 
 export function CustomerRecordTable({ customers }: CustomerRecordTableProps) {

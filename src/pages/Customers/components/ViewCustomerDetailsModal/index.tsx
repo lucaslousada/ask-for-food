@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { api } from '../../../../services/api';
-import { Customers } from '../..';
+import { CustomerDataType } from '../..';
 import { normalizePhoneNumber } from '../../../../utils/masks';
 import { MoreActionsInSeeDetails } from '../../../../components/MoreActionsInSeeDetails';
 import {
@@ -21,7 +21,7 @@ import { X } from 'phosphor-react';
 
 export function ViewCustomerDetailsModal() {
   const [modaIsOpen, setModalIsOpen] = useState(true);
-  const [customer, setCustomer] = useState<Customers>({} as Customers);
+  const [customer, setCustomer] = useState<CustomerDataType>({} as CustomerDataType);
 
   const navigate = useNavigate();
   const { customerId } = useParams();

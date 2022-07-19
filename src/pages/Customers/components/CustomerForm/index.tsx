@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 import { Formik, Form } from 'formik';
 import InputMask from 'react-input-mask';
 import { api } from '../../../../services/api';
-import { Customers } from '../..';
+import { CustomerDataType } from '../..';
 import { schema } from './schema';
 import { Field } from '../../../../components/Form/Field';
 
@@ -10,11 +10,11 @@ import { FieldsWrapper } from './styles';
 import { SubmitButton } from '../../../../styles/shared/Buttons';
 import { ModalCancelButton } from '../../../../styles/shared/Modal';
 
-export type CustomerForm = Omit<Customers, 'id' | 'createdAt'>;
+type CustomerFormData = Omit<CustomerDataType, 'id' | 'createdAt'>;
 
 interface CustomerFormProps {
-  customers: Customers[];
-  onCustomersChange: (customers: Customers[]) => void;
+  customers: CustomerDataType[];
+  onCustomersChange: (customers: CustomerDataType[]) => void;
   onModalOpenChange: (value: boolean) => void;
 }
 
@@ -23,7 +23,7 @@ export function CustomerForm({
   onCustomersChange,
   onModalOpenChange,
 }: CustomerFormProps) {
-  async function handleCustomerFormSubmit(values: CustomerForm) {
+  async function handleCustomerFormSubmit(values: CustomerFormData) {
     const response = await api.post('/customers', {
       ...values,
       createdAt: new Date(),
