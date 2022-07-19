@@ -1,11 +1,7 @@
 import styled from 'styled-components';
-import { Overlay, Close, Content, Title } from '@radix-ui/react-dialog';
+import { Close, Content, Title } from '@radix-ui/react-dialog';
 
-import { ModalCloseButton, ModalContent, ModalOverlay } from './Modal';
-
-export const DialogOverlay = styled(Overlay)`
-  ${ModalOverlay}
-`;
+import { ModalCloseButton, ModalContent } from './Modal';
 
 export const DialogContent = styled(Content)`
   ${ModalContent}

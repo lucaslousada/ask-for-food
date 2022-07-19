@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useOutletContext } from 'react-router-dom';
 import { api } from '../../services/api';
 import { Menu } from '../../components/Menu';
 import { Header } from '../../components/Header';
@@ -23,13 +23,25 @@ export interface CustomerDataType {
   createdAt: string;
 }
 
+interface OutletContextType {
+  customers: CustomerDataType[];
+  setCustomers: React.Dispatch<React.SetStateAction<CustomerDataType[]>>;
+}
+
 export function Customers() {
   const [customers, setCustomers] = useState<CustomerDataType[]>([]);
+  const [customersLoadingCompleted, setCustomersLoadingCompleted] =
+    useState(false);
   const [registerAndEditModalIsOpen, setRegisterAndEditModalIsOpen] =
     useState(false);
 
   useEffect(() => {
-    api.get('/customers').then(response => setCustomers(response.data));
+    const fetchData = async () => {
+      await api.get('/customers').then(response => setCustomers(response.data));
+      setCustomersLoadingCompleted(true);
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -58,7 +70,13 @@ export function Customers() {
         </Main>
       </Container>
 
-      <Outlet />
+      {customersLoadingCompleted === true ? (
+        <Outlet context={{ customers, setCustomers }} />
+      ) : null}
     </>
   );
+}
+
+export function useDataFromAllCustomers() {
+  return useOutletContext<OutletContextType>();
 }
