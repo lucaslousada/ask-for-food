@@ -1,18 +1,5 @@
 import styled, { css } from 'styled-components';
-import { transparentize } from 'polished';
 import { Close } from '@radix-ui/react-dialog';
-
-export const ModalOverlay = css`
-  position: fixed;
-  inset: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: ${({ theme }) =>
-    transparentize(0.2, theme.colors.color_100)};
-`;
 
 export const ModalContent = css`
   width: 90%;
@@ -20,7 +7,7 @@ export const ModalContent = css`
   background-color: ${({ theme }) => theme.colors.color_400};
 `;
 
-export const ModalCloseButton = css`
+export const DialogClose = styled(Close)`
   display: flex;
   background-color: ${({ theme }) => theme.colors.transparent_color_200};
   border: none;

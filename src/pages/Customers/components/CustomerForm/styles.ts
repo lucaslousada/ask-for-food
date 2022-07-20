@@ -1,4 +1,34 @@
 import styled from 'styled-components';
+import { Content, Title } from '@radix-ui/react-dialog';
+
+import { ModalContent, ModalFooter } from '../../../../styles/shared/Modal';
+
+export const DialogContent = styled(Content)`
+  ${ModalContent}
+  max-width: 750px;
+  max-height: 510px;
+  overflow-y: auto;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 40px;
+
+    margin: 30px 30px 0;
+    padding-bottom: 23px;
+    border-bottom: 1px solid
+      ${({ theme }) => theme.colors.transparent_color_100};
+  }
+
+  form > div:last-of-type {
+    ${ModalFooter}
+  }
+`;
+
+export const DialogTitle = styled(Title)`
+  font-size: 24px;
+`;
 
 export const FieldsWrapper = styled.div`
   display: grid;

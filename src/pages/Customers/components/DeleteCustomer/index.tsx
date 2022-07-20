@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../../../services/api';
-import { useAllCustomersAndSelectedCustomer } from '../ViewCustomerModal';
+import { useAllCustomersAndSelectedCustomer } from '../..';
+import { Modal } from '../../../../components/Modal';
 
 import { SubmitButton } from '../../../../styles/shared/Buttons';
 import { ModalCancelButton } from '../../../../styles/shared/Modal';
@@ -16,26 +17,30 @@ export function DeleteCustomer() {
   async function deleteCustomer() {
     await api.delete(`customers/${customerId}`);
     setCustomers(customers.filter(value => value.id !== Number(customerId)));
-    navigate('../..');
+    navigate('..');
   }
 
   return (
-    <DialogContent>
-      <DialogTitle>Deletar cliente</DialogTitle>
-      <DialogDescription>
-        Deseja mesmo remover permanentemente
-        <strong> {customer.name}</strong> do seu registro de clientes?
-      </DialogDescription>
-      <div>
-        <ModalCancelButton>Cancelar</ModalCancelButton>
-        <SubmitButton
-          type="submit"
-          color="red"
-          onClick={() => deleteCustomer()}
-        >
-          Deletar cliente
-        </SubmitButton>
-      </div>
-    </DialogContent>
+    <Modal>
+      {Object.keys(customer).length > 0 && customers.length > 0 ? (
+        <DialogContent>
+          <DialogTitle>Deletar cliente</DialogTitle>
+          <DialogDescription>
+            Deseja mesmo remover permanentemente
+            <strong> {customer.name}</strong> do seu registro de clientes?
+          </DialogDescription>
+          <div>
+            <ModalCancelButton>Cancelar</ModalCancelButton>
+            <SubmitButton
+              type="submit"
+              color="red"
+              onClick={() => deleteCustomer()}
+            >
+              Deletar cliente
+            </SubmitButton>
+          </div>
+        </DialogContent>
+      ) : null}
+    </Modal>
   );
 }

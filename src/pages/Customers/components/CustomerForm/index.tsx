@@ -1,84 +1,104 @@
 import { ChangeEvent } from 'react';
 import { Formik, Form } from 'formik';
 import InputMask from 'react-input-mask';
+import { useNavigate } from 'react-router-dom';
 import { api } from '../../../../services/api';
-import { CustomerDataType } from '../..';
+import { CustomerDataType, useAllCustomersAndSelectedCustomer } from '../..';
 import { schema } from './schema';
 import { Field } from '../../../../components/Form/Field';
+import { Modal } from '../../../../components/Modal';
 
-import { FieldsWrapper } from './styles';
+import { X } from 'phosphor-react';
+
 import { SubmitButton } from '../../../../styles/shared/Buttons';
-import { ModalCancelButton } from '../../../../styles/shared/Modal';
+import {
+  DialogClose,
+  ModalCancelButton,
+} from '../../../../styles/shared/Modal';
+import { DialogContent, DialogTitle, FieldsWrapper } from './styles';
 
 type CustomerFormData = Omit<CustomerDataType, 'id' | 'createdAt'>;
 
-interface CustomerFormProps {
-  customers: CustomerDataType[];
-  onCustomersChange: (customers: CustomerDataType[]) => void;
-  onModalOpenChange: (value: boolean) => void;
-}
+export function CustomerForm() {
+  const { customers, setCustomers } = useAllCustomersAndSelectedCustomer();
+  const navigate = useNavigate();
 
-export function CustomerForm({
-  customers,
-  onCustomersChange,
-  onModalOpenChange,
-}: CustomerFormProps) {
   async function handleCustomerFormSubmit(values: CustomerFormData) {
     const response = await api.post('/customers', {
       ...values,
       createdAt: new Date(),
     });
     const customer = response.data;
-    onCustomersChange([...customers, customer]);
-    onModalOpenChange(false);
+    setCustomers([...customers, customer]);
+    navigate('..');
   }
 
   return (
-    <Formik
-      validationSchema={schema}
-      initialValues={{
-        name: '',
-        phone: '',
-        address: {
-          street_name: '',
-          number: '',
-          neighborhood: '',
-          city: '',
-          complement: '',
-        },
-      }}
-      onSubmit={handleCustomerFormSubmit}
-    >
-      {({ isSubmitting, setFieldValue }) => (
-        <Form>
-          <FieldsWrapper>
-            <Field type="text" name="name" label="Nome" />
-            <Field
-              component={InputMask}
-              mask="(99) 99999-9999"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                const { value } = e.target;
-                setFieldValue('phone', value.replace(/[^0-9]/g, ''));
-              }}
-              type="text"
-              name="phone"
-              label="Telefone"
-            />
-            <Field type="text" name="address.street_name" label="Rua" />
-            <Field type="text" name="address.number" label="Número" />
-            <Field type="text" name="address.neighborhood" label="Bairro" />
-            <Field type="text" name="address.city" label="Cidade" />
-            <Field type="text" name="address.complement" label="Complemento" />
-          </FieldsWrapper>
+    <Modal>
+      <DialogContent aria-describedby={undefined}>
+        <header>
+          <DialogTitle asChild>
+            <h3>Cadastrar cliente</h3>
+          </DialogTitle>
+          <DialogClose>
+            <X alt="Fechar" />
+          </DialogClose>
+        </header>
+        <Formik
+          validationSchema={schema}
+          initialValues={{
+            name: '',
+            phone: '',
+            address: {
+              street_name: '',
+              number: '',
+              neighborhood: '',
+              city: '',
+              complement: '',
+            },
+          }}
+          onSubmit={handleCustomerFormSubmit}
+        >
+          {({ isSubmitting, setFieldValue }) => (
+            <Form>
+              <FieldsWrapper>
+                <Field type="text" name="name" label="Nome" />
+                <Field
+                  component={InputMask}
+                  mask="(99) 99999-9999"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    const { value } = e.target;
+                    setFieldValue('phone', value.replace(/[^0-9]/g, ''));
+                  }}
+                  type="text"
+                  name="phone"
+                  label="Telefone"
+                />
+                <Field type="text" name="address.street_name" label="Rua" />
+                <Field type="text" name="address.number" label="Número" />
+                <Field type="text" name="address.neighborhood" label="Bairro" />
+                <Field type="text" name="address.city" label="Cidade" />
+                <Field
+                  type="text"
+                  name="address.complement"
+                  label="Complemento"
+                />
+              </FieldsWrapper>
 
-          <div>
-            <ModalCancelButton>Cancelar</ModalCancelButton>
-            <SubmitButton type="submit" disabled={isSubmitting} color="green">
-              Cadastrar
-            </SubmitButton>
-          </div>
-        </Form>
-      )}
-    </Formik>
+              <div>
+                <ModalCancelButton>Cancelar</ModalCancelButton>
+                <SubmitButton
+                  type="submit"
+                  disabled={isSubmitting}
+                  color="green"
+                >
+                  Cadastrar
+                </SubmitButton>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </DialogContent>
+    </Modal>
   );
 }

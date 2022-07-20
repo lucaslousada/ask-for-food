@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useOutletContext } from 'react-router-dom';
+import axios from 'axios';
+import {
+  Outlet,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from 'react-router-dom';
 import { api } from '../../services/api';
 import { Menu } from '../../components/Menu';
 import { Header } from '../../components/Header';
 import { CustomerRecordTable } from './components/CustomerRecordTable';
-import { RegisterAndEditModal } from '../../components/RegisterAndEditModal';
-import { CustomerForm } from './components/CustomerForm';
 
 import { Container, Main } from './styles';
 
@@ -24,59 +28,54 @@ export interface CustomerDataType {
 }
 
 interface OutletContextType {
+  customer: CustomerDataType;
   customers: CustomerDataType[];
   setCustomers: React.Dispatch<React.SetStateAction<CustomerDataType[]>>;
 }
 
 export function Customers() {
   const [customers, setCustomers] = useState<CustomerDataType[]>([]);
-  const [customersLoadingCompleted, setCustomersLoadingCompleted] =
-    useState(false);
-  const [registerAndEditModalIsOpen, setRegisterAndEditModalIsOpen] =
-    useState(false);
+  const [customer, setCustomer] = useState<CustomerDataType>(
+    {} as CustomerDataType
+  );
+
+  const navigate = useNavigate();
+  const { customerId } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
-      await api.get('/customers').then(response => setCustomers(response.data));
-      setCustomersLoadingCompleted(true);
-    };
-
-    fetchData();
+    api.get('/customers').then(response => setCustomers(response.data));
   }, []);
+
+  useEffect(() => {
+    setCustomer({} as CustomerDataType);
+
+    if (!customerId) return;
+
+    api
+      .get(`/customers/${customerId}`)
+      .then(response => setCustomer(response.data))
+      .catch(error => {
+        if (axios.isAxiosError(error) && error.response?.status === 404) {
+          navigate('/not-found', { replace: true });
+        }
+      });
+  }, [customerId]);
 
   return (
     <>
       <Container>
         <Menu activeCategory="registers" />
         <Main>
-          <Header
-            title="Clientes"
-            newRegistrationButton={
-              <RegisterAndEditModal
-                title="Cadastrar cliente"
-                modalIsOpen={registerAndEditModalIsOpen}
-                onModalOpenChange={setRegisterAndEditModalIsOpen}
-                form={
-                  <CustomerForm
-                    customers={customers}
-                    onCustomersChange={setCustomers}
-                    onModalOpenChange={setRegisterAndEditModalIsOpen}
-                  />
-                }
-              />
-            }
-          />
+          <Header pageTitle="Clientes" buttonText="Cadastrar cliente" />
           <CustomerRecordTable customers={customers} />
         </Main>
       </Container>
 
-      {customersLoadingCompleted === true ? (
-        <Outlet context={{ customers, setCustomers }} />
-      ) : null}
+      <Outlet context={{ customer, customers, setCustomers }} />
     </>
   );
 }
 
-export function useAllCustomers() {
+export function useAllCustomersAndSelectedCustomer() {
   return useOutletContext<OutletContextType>();
 }

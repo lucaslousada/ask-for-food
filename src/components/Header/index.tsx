@@ -1,17 +1,20 @@
-import { ReactNode } from 'react';
+import { Plus } from 'phosphor-react';
 
-import { Container } from './styles';
+import { Container, NewRegistrationLink } from './styles';
 
 interface HeaderProps {
-  title: string;
-  newRegistrationButton: ReactNode;
+  pageTitle: string;
+  buttonText: string;
 }
 
-export function Header({ title, newRegistrationButton }: HeaderProps) {
+export function Header({ pageTitle, buttonText }: HeaderProps) {
   return (
     <Container>
-      <h1>{title}</h1>
-      {newRegistrationButton}
+      <h1>{pageTitle}</h1>
+      <NewRegistrationLink to="./new">
+        <Plus />
+        {buttonText}
+      </NewRegistrationLink>
     </Container>
   );
 }
