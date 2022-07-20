@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { api } from '../../../../services/api';
-import { CustomerDataType } from '../..';
+import { CustomerDataType, useAllCustomers } from '../..';
 import {
   Outlet,
   useNavigate,
@@ -15,6 +15,12 @@ import {
 
 import { DialogOverlay } from './styles';
 
+interface OutletContextType {
+  customer: CustomerDataType;
+  customers: CustomerDataType[];
+  setCustomers: React.Dispatch<React.SetStateAction<CustomerDataType[]>>;
+}
+
 export function ViewCustomerModal() {
   const [modaIsOpen, setModalIsOpen] = useState(true);
   const [customerLoadingCompleted, setCustomerLoadingCompleted] =
@@ -22,6 +28,7 @@ export function ViewCustomerModal() {
   const [customer, setCustomer] = useState<CustomerDataType>(
     {} as CustomerDataType
   );
+  const { customers, setCustomers } = useAllCustomers();
 
   const { customerId } = useParams();
   const navigate = useNavigate();
@@ -52,7 +59,7 @@ export function ViewCustomerModal() {
       <DialogPortal>
         <DialogOverlay>
           {customerLoadingCompleted === true ? (
-            <Outlet context={customer} />
+            <Outlet context={{ customer, customers, setCustomers }} />
           ) : null}
         </DialogOverlay>
       </DialogPortal>
@@ -60,6 +67,6 @@ export function ViewCustomerModal() {
   );
 }
 
-export function useSelectedCustomerData() {
-  return useOutletContext<CustomerDataType>();
+export function useAllCustomersAndSelectedCustomer() {
+  return useOutletContext<OutletContextType>();
 }

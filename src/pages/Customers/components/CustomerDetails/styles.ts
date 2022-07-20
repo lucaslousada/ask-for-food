@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { Close, Content, Title } from '@radix-ui/react-dialog';
 
-import { ModalCloseButton, ModalContent } from './Modal';
+import {
+  ModalCloseButton,
+  ModalContent,
+} from '../../../../styles/shared/Modal';
 
 export const DialogContent = styled(Content)`
   ${ModalContent}

@@ -1,17 +1,13 @@
 import { normalizePhoneNumber } from '../../../../utils/masks';
 import { MoreActionsInSeeDetails } from '../../../../components/MoreActionsInSeeDetails';
-import { useSelectedCustomerData } from '../ViewCustomerModal';
+import { useAllCustomersAndSelectedCustomer } from '../ViewCustomerModal';
 
 import { X } from 'phosphor-react';
 
-import {
-  DialogClose,
-  DialogContent,
-  DialogTitle,
-} from '../../../../styles/shared/RecordDetails';
+import { DialogClose, DialogContent, DialogTitle } from './styles';
 
 export function CustomerDetails() {
-  const customer = useSelectedCustomerData();
+  const { customer } = useAllCustomersAndSelectedCustomer();
 
   return (
     <DialogContent aria-describedby={undefined}>

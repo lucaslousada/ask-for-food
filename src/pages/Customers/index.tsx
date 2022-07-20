@@ -77,6 +77,6 @@ export function Customers() {
   );
 }
 
-export function useDataFromAllCustomers() {
+export function useAllCustomers() {
   return useOutletContext<OutletContextType>();
 }
