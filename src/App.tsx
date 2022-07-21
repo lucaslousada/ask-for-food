@@ -22,6 +22,7 @@ export function App() {
           <Route path="new" element={<CustomerForm />} />
           <Route path=":customerId" element={<CustomerDetails />} />
           <Route path=":customerId/delete" element={<DeleteCustomer />} />
+          <Route path=":customerId/edit" element={<CustomerForm />} />
         </Route>
         <Route path="not-found" element={<PageNotFound />} />
         <Route path="*" element={<PageNotFound />} />

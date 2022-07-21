@@ -14,7 +14,7 @@ export function DeleteCustomer() {
   const { customerId } = useParams();
   const navigate = useNavigate();
 
-  async function deleteCustomer() {
+  async function handleDeleteCustomer() {
     await api.delete(`customers/${customerId}`);
     setCustomers(customers.filter(value => value.id !== Number(customerId)));
     navigate('..');
@@ -32,9 +32,9 @@ export function DeleteCustomer() {
           <div>
             <ModalCancelButton>Cancelar</ModalCancelButton>
             <SubmitButton
-              type="submit"
+              type="button"
               color="red"
-              onClick={() => deleteCustomer()}
+              onClick={() => handleDeleteCustomer()}
             >
               Deletar cliente
             </SubmitButton>

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { darken, transparentize } from 'polished';
 
 interface SubmitButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  type: 'submit';
   color: 'red' | 'green';
 }
 

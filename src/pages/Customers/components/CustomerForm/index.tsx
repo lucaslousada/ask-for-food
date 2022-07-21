@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import { Formik, Form } from 'formik';
 import InputMask from 'react-input-mask';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../../../services/api';
 import { CustomerDataType, useAllCustomersAndSelectedCustomer } from '../..';
 import { schema } from './schema';
@@ -20,48 +20,80 @@ import {
   FieldsWrapper,
 } from './styles';
 
+const initialValues = {
+  name: '',
+  phone: '',
+  address: {
+    street_name: '',
+    number: '',
+    neighborhood: '',
+    city: '',
+    complement: '',
+  },
+};
+
 type CustomerFormData = Omit<CustomerDataType, 'id' | 'createdAt'>;
 
 export function CustomerForm() {
-  const { customers, setCustomers } = useAllCustomersAndSelectedCustomer();
-  const navigate = useNavigate();
+  const { customer, customers, setCustomers } =
+    useAllCustomersAndSelectedCustomer();
 
-  async function handleCustomerFormSubmit(values: CustomerFormData) {
-    const response = await api.post('/customers', {
+  const navigate = useNavigate();
+  const { customerId } = useParams();
+
+  async function handleRegisterCustomer(values: CustomerFormData) {
+    const { data } = await api.post('/customers', {
       ...values,
       createdAt: new Date(),
     });
-    const customer = response.data;
-    setCustomers([...customers, customer]);
+    setCustomers([...customers, data]);
     navigate('..');
   }
+
+  async function handleEditCustomer(values: CustomerFormData) {
+    const { data } = await api.patch(`/customers/${customerId}`, {
+      ...values,
+    });
+    setCustomers(
+      customers.map(currentValue =>
+        currentValue.id === data.id ? data : currentValue
+      )
+    );
+    navigate('..');
+  }
+
+  const componentData = customerId
+    ? {
+        title: 'Editar cliente',
+        description: 'Faça as alterações desejadas.',
+        initialValues: customer,
+        handleSubmit: handleEditCustomer,
+        buttonText: 'Salvar',
+      }
+    : {
+        title: 'Cadastrar cliente',
+        description: 'Preencha o formulário abaixo.',
+        initialValues: initialValues,
+        handleSubmit: handleRegisterCustomer,
+        buttonText: 'Cadastrar',
+      };
 
   return (
     <Modal>
       <DialogContent>
         <header>
           <DialogTitle asChild>
-            <h3>Cadastrar cliente</h3>
+            <h3>{componentData.title}</h3>
           </DialogTitle>
-          <DialogDescription>Preencha o formulário abaixo.</DialogDescription>
+          <DialogDescription>{componentData.description}</DialogDescription>
           <DialogClose>
             <X alt="Fechar" />
           </DialogClose>
         </header>
         <Formik
           validationSchema={schema}
-          initialValues={{
-            name: '',
-            phone: '',
-            address: {
-              street_name: '',
-              number: '',
-              neighborhood: '',
-              city: '',
-              complement: '',
-            },
-          }}
-          onSubmit={handleCustomerFormSubmit}
+          initialValues={componentData.initialValues}
+          onSubmit={componentData.handleSubmit}
         >
           {({ isSubmitting, setFieldValue }) => (
             <Form>
@@ -96,7 +128,7 @@ export function CustomerForm() {
                   disabled={isSubmitting}
                   color="green"
                 >
-                  Cadastrar
+                  {componentData.buttonText}
                 </SubmitButton>
               </div>
             </Form>
