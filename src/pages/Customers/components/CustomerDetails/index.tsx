@@ -5,8 +5,7 @@ import { Modal } from '../../../../components/Modal';
 
 import { X } from 'phosphor-react';
 
-import { DialogClose } from '../../../../styles/shared/Modal';
-import { DialogContent, DialogTitle } from './styles';
+import { DialogContent, DialogTitle, DialogClose } from './styles';
 
 export function CustomerDetails() {
   const { customer } = useAllCustomersAndSelectedCustomer();

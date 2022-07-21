@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-import { Content, Title } from '@radix-ui/react-dialog';
+import { Close, Content, Title } from '@radix-ui/react-dialog';
 
-import { ModalContent } from '../../../../styles/shared/Modal';
+import {
+  ModalCloseButton,
+  ModalContent,
+} from '../../../../styles/shared/Modal';
 
 export const DialogContent = styled(Content)`
   ${ModalContent}
@@ -85,4 +88,8 @@ export const DialogContent = styled(Content)`
 
 export const DialogTitle = styled(Title)`
   font-size: 16px;
+`;
+
+export const DialogClose = styled(Close)`
+  ${ModalCloseButton}
 `;

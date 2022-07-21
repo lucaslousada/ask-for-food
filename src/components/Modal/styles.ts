@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { transparentize } from 'polished';
 import { Overlay } from '@radix-ui/react-dialog';
 
 export const DialogOverlay = styled(Overlay)`
@@ -10,6 +9,5 @@ export const DialogOverlay = styled(Overlay)`
   justify-content: center;
   align-items: center;
 
-  background-color: ${({ theme }) =>
-    transparentize(0.2, theme.colors.color_100)};
+  background-color: rgba(0, 0, 0, 0.85);
 `;

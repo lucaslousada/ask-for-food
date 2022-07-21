@@ -14,7 +14,7 @@ export const Container = styled.div<ContainerProps>`
   transform: ${({ isTheMenuVisible }) =>
     isTheMenuVisible === true ? 'initial' : 'translateX(-250px)'};
   padding: ${({ isTheMenuVisible }) =>
-    isTheMenuVisible === true ? '42px 15px 20px' : '42px 0 20px'};
+    isTheMenuVisible === true ? '40px 15px 20px' : '40px 0 20px'};
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -36,7 +36,7 @@ export const Header = styled.header`
 
 export const MinimizeMenuButton = styled.button`
   display: flex;
-  padding: 3px;
+  padding: 5px;
   border-radius: 3px;
   background-color: transparent;
   border: none;
@@ -65,7 +65,7 @@ export const List = styled.ul`
     display: flex;
     align-items: center;
     column-gap: 10px;
-    padding: 5px 10px;
+    padding: 8px 10px;
     border-radius: 5px;
     color: ${({ theme }) => theme.colors.color_700};
     transition: color ${({ theme }) => theme.transitions.default},
@@ -91,6 +91,6 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   & + li {
-    margin-top: 10px;
+    margin-top: 5px;
   }
 `;

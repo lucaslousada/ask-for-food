@@ -11,11 +11,14 @@ import { Modal } from '../../../../components/Modal';
 import { X } from 'phosphor-react';
 
 import { SubmitButton } from '../../../../styles/shared/Buttons';
+import { ModalCancelButton } from '../../../../styles/shared/Modal';
 import {
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
   DialogClose,
-  ModalCancelButton,
-} from '../../../../styles/shared/Modal';
-import { DialogContent, DialogTitle, FieldsWrapper } from './styles';
+  FieldsWrapper,
+} from './styles';
 
 type CustomerFormData = Omit<CustomerDataType, 'id' | 'createdAt'>;
 
@@ -35,11 +38,12 @@ export function CustomerForm() {
 
   return (
     <Modal>
-      <DialogContent aria-describedby={undefined}>
+      <DialogContent>
         <header>
           <DialogTitle asChild>
             <h3>Cadastrar cliente</h3>
           </DialogTitle>
+          <DialogDescription>Preencha o formulário abaixo.</DialogDescription>
           <DialogClose>
             <X alt="Fechar" />
           </DialogClose>

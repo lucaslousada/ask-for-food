@@ -1,24 +1,24 @@
 import styled from 'styled-components';
-import { Content, Title } from '@radix-ui/react-dialog';
+import { Close, Content, Description, Title } from '@radix-ui/react-dialog';
 
-import { ModalContent, ModalFooter } from '../../../../styles/shared/Modal';
+import {
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+} from '../../../../styles/shared/Modal';
 
 export const DialogContent = styled(Content)`
   ${ModalContent}
-  max-width: 750px;
+  max-width: 650px;
   max-height: 510px;
   overflow-y: auto;
 
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 40px;
+    display: grid;
+    grid-template-columns: auto min-content;
+    grid-template-areas: 'title close' 'description description';
 
-    margin: 30px 30px 0;
-    padding-bottom: 23px;
-    border-bottom: 1px solid
-      ${({ theme }) => theme.colors.transparent_color_100};
+    padding: 24px;
   }
 
   form > div:last-of-type {
@@ -28,14 +28,27 @@ export const DialogContent = styled(Content)`
 
 export const DialogTitle = styled(Title)`
   font-size: 24px;
+  grid-area: title;
+`;
+
+export const DialogDescription = styled(Description)`
+  color: ${({ theme }) => theme.colors.color_800};
+  margin-top: 8px;
+  grid-area: description;
+`;
+
+export const DialogClose = styled(Close)`
+  ${ModalCloseButton}
+  grid-area: close;
+  height: min-content;
 `;
 
 export const FieldsWrapper = styled.div`
   display: grid;
-  padding: 20px 30px 40px;
+  padding: 0 24px 16px;
 
-  grid-template-columns: 33% 10% 14.7% 33%;
-  gap: 20px;
+  grid-template-columns: 33% 10% 16% 33%;
+  gap: 16px;
 
   > div:nth-child(1) {
     grid-column: 1 / span 3;

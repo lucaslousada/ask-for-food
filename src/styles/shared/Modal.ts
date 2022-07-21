@@ -7,7 +7,7 @@ export const ModalContent = css`
   background-color: ${({ theme }) => theme.colors.color_400};
 `;
 
-export const DialogClose = styled(Close)`
+export const ModalCloseButton = css`
   display: flex;
   background-color: ${({ theme }) => theme.colors.transparent_color_200};
   border: none;
@@ -29,11 +29,11 @@ export const ModalFooter = css`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  column-gap: 40px;
+  column-gap: 30px;
+  border-radius: 0 0 5px 5px;
 
-  padding: 20px 30px;
-  background-color: ${({ theme }) => theme.colors.transparent_color_200};
-  border-top: 1px solid ${({ theme }) => theme.colors.transparent_color_100};
+  padding: 16px;
+  background-color: ${({ theme }) => theme.colors.color_300};
 `;
 
 export const ModalCancelButton = styled(Close)`
@@ -42,6 +42,7 @@ export const ModalCancelButton = styled(Close)`
   text-decoration: underline transparent;
   text-underline-offset: 2px;
   transition: text-decoration ${({ theme }) => theme.transitions.default};
+  font-size: 12px;
 
   &:hover {
     text-decoration-color: ${({ theme }) => theme.colors.color_900};

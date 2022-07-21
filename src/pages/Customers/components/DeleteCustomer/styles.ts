@@ -14,12 +14,12 @@ export const DialogContent = styled(Content)`
 
 export const DialogTitle = styled(Title)`
   font-size: 24px;
-  padding: 30px 30px 20px;
+  padding: 24px;
 `;
 
 export const DialogDescription = styled(Description)`
   font-size: 16px;
-  padding: 0 30px 40px;
+  padding: 0 24px 16px;
   color: ${({ theme }) => theme.colors.color_800};
 
   strong {

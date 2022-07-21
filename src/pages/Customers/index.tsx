@@ -66,7 +66,7 @@ export function Customers() {
       <Container>
         <Menu activeCategory="registers" />
         <Main>
-          <Header pageTitle="Clientes" buttonText="Cadastrar cliente" />
+          <Header pageTitle="Clientes" />
           <CustomerRecordTable customers={customers} />
         </Main>
       </Container>

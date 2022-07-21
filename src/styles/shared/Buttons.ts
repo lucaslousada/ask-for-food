@@ -9,9 +9,9 @@ interface SubmitButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const SubmitButton = styled.button<SubmitButtonProps>`
   background-color: ${({ theme, color }) => theme.colors[color]};
-  border-radius: 5px;
-  font-size: 14px;
-  padding: 13px 20px;
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 10px 20px;
   border: none;
   transition: background-color ${({ theme }) => theme.transitions.default};
 

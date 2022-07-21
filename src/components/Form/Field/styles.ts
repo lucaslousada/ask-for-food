@@ -6,16 +6,17 @@ export const Container = styled.div`
 
   label {
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    color: ${({ theme }) => theme.colors.color_800};
   }
 
   input {
-    height: 48px;
-    padding: 15px;
-    background-color: ${({ theme }) => theme.colors.color_200};
+    height: 40px;
+    padding: 10px;
+    background-color: ${({ theme }) => theme.colors.color_100};
     color: ${({ theme }) => theme.colors.color_900};
-    border: 1px solid ${({ theme }) => theme.colors.transparent_color_100};
-    border-radius: 5px;
+    border: none;
+    border-radius: 3px;
     font-size: 14px;
   }
 
