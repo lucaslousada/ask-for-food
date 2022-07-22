@@ -8,9 +8,8 @@ Ask for food é uma aplicação simples voltada para o segmento da alimentação
 [![Repo Size](https://img.shields.io/github/repo-size/lucaslousada/ask-for-food?color=202225&style=flat-square)](#)
 [![License](https://img.shields.io/github/license/lucaslousada/ask-for-food?color=202225&style=flat-square)](LICENSE.md)
 
-<p align="center">
-  🚧 Em construção... 🚧
-</p>
+🚧 Em construção... 🚧
+
 <div style="display: flex; flex-wrap: wrap; gap: 1%;">
   <img alt="Tabela de clientes" src="./.github/app-preview-1.png" width="49.5%">
   <img alt="Formulário de cliente" src="./.github/app-preview-2.png" width="49.5%">
