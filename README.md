@@ -11,11 +11,11 @@ Ask for food é uma aplicação simples voltada para o segmento da alimentação
 <p align="center">
   🚧 Em construção... 🚧
 </p>
-<div style="display: grid; grid-template-areas: '. .' '. .'; gap: 5px;">
-  <img alt="Tabela de clientes" src="./.github/app-preview-1.png">
-  <img alt="Formulário de cliente" src="./.github/app-preview-2.png">
-  <img alt="Ver detalhes de um cliente" src="./.github/app-preview-3.png">
-  <img alt="Deletar cliente" src="./.github/app-preview-4.png">
+<div style="display: flex; flex-wrap: wrap; gap: 1%;">
+  <img alt="Tabela de clientes" src="./.github/app-preview-1.png" width="49.5%">
+  <img alt="Formulário de cliente" src="./.github/app-preview-2.png" width="49.5%">
+  <img alt="Ver detalhes de um cliente" src="./.github/app-preview-3.png" width="49.5%">
+  <img alt="Deletar cliente" src="./.github/app-preview-4.png" width="49.5%">
 </div>
 <p align="center">
   Layout e código por <a href="https://github.com/lucaslousada">Lucas Lousada</a> | Inspirado no aplicativo <a href="https://discord.com/">Discord</a>
